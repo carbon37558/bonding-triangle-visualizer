@@ -23,7 +23,7 @@ const PERIODS = [
 ];
 
 const X_MIN = 0.79, X_MAX = 4.0, Y_MAX = 3.2;
-const PLOT = { left: 88, top: 102, width: 640, height: 530 };
+const PLOT = { left: 88, top: 90, width: 620, height: 560 };
 const points = [];
 const inputA = document.querySelector('#element-a');
 const inputB = document.querySelector('#element-b');
@@ -57,10 +57,10 @@ function pointInPolygon(point, polygon) {
 
 // Polygons are transcribed from bonding-triangle-reference.png's visible vertices.
 const REGIONS = [
-  { name: 'metallic', label: 'Metallic', color: '#70706c', points: [[0.79,0],[1.28,1.20],[1.72,0.40],[1.92,0]] },
-  { name: 'ionic', label: 'Ionic', color: '#c2c4bc', points: [[1.28,1.20],[2.32,3.18],[2.73,2.35],[1.72,0.40]] },
-  { name: 'polar covalent', label: 'Polar\ncovalent', color: '#8b9ea0', points: [[1.72,0.40],[2.73,2.35],[3.45,1.00]] },
-  { name: 'covalent', label: 'Covalent', color: '#e5bf69', points: [[1.92,0],[1.72,0.40],[2.73,2.35],[3.45,1.00],[3.97,0]] }
+  { name: 'metallic', label: 'Metallic', color: '#70706c', points: [[0.79,0],[1.30,1.20],[1.73,0.40],[1.92,0]] },
+  { name: 'ionic', label: 'Ionic', color: '#c2c4bc', points: [[1.30,1.20],[2.32,3.18],[2.74,2.35],[1.73,0.40]] },
+  { name: 'polar covalent', label: 'Polar\ncovalent', color: '#8b9ea0', points: [[1.73,0.40],[2.74,2.35],[3.43,1.00]] },
+  { name: 'covalent', label: 'Covalent', color: '#e5bf69', points: [[1.92,0],[1.73,0.40],[2.74,2.35],[3.43,1.00],[3.97,0]] }
 ];
 function bondingRegion(avg, delta) {
   const point = [avg, delta];
@@ -78,6 +78,7 @@ function characterRange(delta) {
   return { covalent: 'less than 8%', ionic: 'more than 92%' };
 }
 function fmt(value) { return value.toFixed(2).replace(/\.?0+$/, ''); }
+function fmtEN(value) { return value.toFixed(1); }
 
 function drawTriangle() {
   const base = document.querySelector('#triangle-base');
@@ -99,8 +100,8 @@ function drawTriangle() {
     base.append(svgEl('line', { x1: xToSvg(value), y1: PLOT.top + PLOT.height, x2: xToSvg(value), y2: PLOT.top + PLOT.height + 8, stroke: '#222' }));
     base.append(svgEl('text', { x: xToSvg(value), y: PLOT.top + PLOT.height + 45, 'text-anchor': 'middle', 'font-size': value === .79 ? 19 : 20, 'font-weight': value === .79 || value === 4 ? 'bold' : 'normal' }, value === .79 ? '0.79' : value.toFixed(1)));
   });
-  base.append(svgEl('text', { x: 890, y: 712, 'text-anchor': 'end', 'font-size': 24, 'font-weight': 'bold' }, 'Average electronegativity'));
-  base.append(svgEl('text', { x: 640, y: 754, 'font-size': 25, 'font-style': 'italic' }, 'χavg = (χₐ + χᵦ) / 2'));
+  base.append(svgEl('text', { x: 890, y: 725, 'text-anchor': 'end', 'font-size': 24, 'font-weight': 'bold' }, 'Average electronegativity'));
+  base.append(svgEl('text', { x: 640, y: 767, 'font-size': 25, 'font-style': 'italic' }, 'χavg = (χₐ + χᵦ) / 2'));
   base.append(svgEl('text', { x: 786, y: 26, 'text-anchor': 'middle', 'font-size': 20, 'font-weight': 'bold' }, '%'));
   base.append(svgEl('text', { x: 786, y: 56, 'text-anchor': 'middle', 'font-size': 20, 'font-weight': 'bold' }, 'covalent'));
   base.append(svgEl('text', { x: 870, y: 26, 'text-anchor': 'middle', 'font-size': 20, 'font-weight': 'bold', fill: '#666' }, '%'));
@@ -125,7 +126,7 @@ function renderPoints() {
 }
 function renderResults(a, b, avg, delta, region) {
   const range = characterRange(delta);
-  results.innerHTML = `<p>${a} electronegativity: ${fmt(EN[a])}</p><p>${b} electronegativity: ${fmt(EN[b])}</p><p>Electronegativity difference: ${fmt(delta)}</p><p>Average electronegativity: ${fmt(avg)}</p><p class="result-heading">Predominantly ${region}</p><p>Covalent character: ${range.covalent}</p><p>Ionic character: ${range.ionic}</p>`;
+  results.innerHTML = `<p>${a} electronegativity: ${fmtEN(EN[a])}</p><p>${b} electronegativity: ${fmtEN(EN[b])}</p><p>Electronegativity difference: ${fmt(delta)}</p><p>Average electronegativity: ${fmt(avg)}</p><p class="result-heading">Predominantly ${region}</p><p>Covalent character: ${range.covalent}</p><p>Ionic character: ${range.ionic}</p>`;
 }
 function plot() {
   const a = normalizeSymbol(inputA.value), b = normalizeSymbol(inputB.value);
@@ -151,7 +152,7 @@ function buildPeriodicTable() {
   PERIODS.flat().forEach((symbol) => {
     const cell = document.createElement('div');
     cell.className = symbol ? 'element' : 'empty';
-    if (symbol) cell.innerHTML = `<span class="element-symbol">${symbol}</span><span class="element-value">${EN[symbol] === undefined ? '—' : fmt(EN[symbol])}</span>`;
+    if (symbol) cell.innerHTML = `<span class="element-symbol">${symbol}</span><span class="element-value">${EN[symbol] === undefined ? '—' : fmtEN(EN[symbol])}</span>`;
     table.append(cell);
   });
 }

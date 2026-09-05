@@ -19,7 +19,7 @@ button:focus-visible, input:focus-visible, summary:focus-visible, a:focus-visibl
 .results p { margin: 4px 0; }
 .result-heading { margin-top: 10px !important; font-weight: bold; }
 .diagram-section { margin: 24px 0; }
-#triangle { display: block; width: 100%; height: auto; }
+#triangle { display: block; width: 85%; height: auto; }
 #clear-button { margin-top: 7px; }
 details { margin: 12px 0; border-top: 1px solid #999; padding-top: 9px; }
 summary { width: fit-content; color: #0000bb; cursor: pointer; text-decoration: underline; }
@@ -27,10 +27,10 @@ summary { width: fit-content; color: #0000bb; cursor: pointer; text-decoration: 
 .details-body p { margin: 8px 0; }
 footer { border-top: 1px solid #999; padding: 16px 0 30px; font-size: .9rem; }
 footer p { margin: 6px 0; }
-.periodic-table { display: grid; grid-template-columns: repeat(18, 49px); grid-template-rows: repeat(9, 59px); gap: 1px; width: max-content; margin-top: 10px; background: #999; border: 1px solid #999; }
-.element { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 49px; background: #fff; line-height: 1.2; }
-.element-symbol { font-weight: bold; font-size: 1.05rem; }
-.element-value { margin-top: 3px; }
+.periodic-table { display: grid; grid-template-columns: repeat(18, 42px); grid-template-rows: repeat(9, 50px); gap: 1px; width: max-content; margin-top: 10px; background: #999; border: 1px solid #999; }
+.element { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 42px; background: #fff; line-height: 1.2; }
+.element-symbol { font-weight: bold; font-size: .9rem; }
+.element-value { margin-top: 2px; font-size: .9rem; }
 .empty { background: #fff; }
 .reference-wrap { overflow-x: auto; }
 .reference-note { font-size: .875rem; }
@@ -38,6 +38,7 @@ footer p { margin: 6px 0; }
   main, footer { width: min(100% - 24px, 900px); }
   h1 { font-size: 1.65rem; }
   .controls { gap: 10px; }
-  .periodic-table { grid-template-columns: repeat(18, 46px); }
-  .element { min-width: 46px; }
+  #triangle { width: 100%; }
+  .periodic-table { grid-template-columns: repeat(18, 42px); }
+  .element { min-width: 42px; }
 }
