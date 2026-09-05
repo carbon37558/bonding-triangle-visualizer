@@ -55,12 +55,26 @@ function pointInPolygon(point, polygon) {
   return inside;
 }
 
-// Polygons are transcribed from bonding-triangle-reference.png's visible vertices.
+const OUTER_TRIANGLE = {
+  left: [0.79, 0],
+  apex: [2.32, 3.18],
+  right: [3.97, 0]
+};
+function pointOnEdgeAtY(start, end, y) {
+  const progress = (y - start[1]) / (end[1] - start[1]);
+  return [start[0] + (end[0] - start[0]) * progress, y];
+}
+const metallicIonicEdge = pointOnEdgeAtY(OUTER_TRIANGLE.left, OUTER_TRIANGLE.apex, 1.20);
+const ionicPolarEdge = pointOnEdgeAtY(OUTER_TRIANGLE.apex, OUTER_TRIANGLE.right, 2.35);
+const polarCovalentEdge = pointOnEdgeAtY(OUTER_TRIANGLE.apex, OUTER_TRIANGLE.right, 1.00);
+const lowerInternalEdge = [1.73, 0.40];
+const lowerCovalentEdge = [1.92, 0];
+
 const REGIONS = [
-  { name: 'metallic', label: 'Metallic', color: '#70706c', points: [[0.79,0],[1.30,1.20],[1.73,0.40],[1.92,0]] },
-  { name: 'ionic', label: 'Ionic', color: '#c2c4bc', points: [[1.30,1.20],[2.32,3.18],[2.74,2.35],[1.73,0.40]] },
-  { name: 'polar covalent', label: 'Polar\ncovalent', color: '#8b9ea0', points: [[1.73,0.40],[2.74,2.35],[3.43,1.00]] },
-  { name: 'covalent', label: 'Covalent', color: '#e5bf69', points: [[1.92,0],[1.73,0.40],[2.74,2.35],[3.43,1.00],[3.97,0]] }
+  { name: 'metallic', label: 'Metallic', color: '#70706c', points: [OUTER_TRIANGLE.left, metallicIonicEdge, lowerInternalEdge, lowerCovalentEdge] },
+  { name: 'ionic', label: 'Ionic', color: '#c2c4bc', points: [metallicIonicEdge, OUTER_TRIANGLE.apex, ionicPolarEdge, lowerInternalEdge] },
+  { name: 'polar covalent', label: 'Polar\ncovalent', color: '#8b9ea0', points: [lowerInternalEdge, ionicPolarEdge, polarCovalentEdge] },
+  { name: 'covalent', label: 'Covalent', color: '#e5bf69', points: [lowerCovalentEdge, lowerInternalEdge, ionicPolarEdge, polarCovalentEdge, OUTER_TRIANGLE.right] }
 ];
 function bondingRegion(avg, delta) {
   const point = [avg, delta];
