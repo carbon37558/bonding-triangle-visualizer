@@ -1,0 +1,43 @@
+:root { color: #171717; font-family: Arial, Helvetica, sans-serif; font-size: 16px; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; }
+main, footer { width: min(900px, calc(100% - 32px)); margin: 0 auto; }
+main { padding: 18px 0 28px; }
+a { color: #0000bb; text-decoration: underline; }
+.back-link { margin: 0 0 20px; }
+h1 { margin: 0; font-size: 2rem; line-height: 1.15; }
+.subtitle { margin: 4px 0 23px; }
+.calculator { border-top: 1px solid #999; border-bottom: 1px solid #999; padding: 15px 0 13px; }
+.controls { display: flex; align-items: end; flex-wrap: wrap; gap: 12px 18px; }
+label { font-weight: bold; }
+input { display: block; width: 104px; height: 29px; margin-top: 5px; border: 1px solid #555; border-radius: 0; padding: 3px 6px; font: inherit; font-weight: normal; }
+button { min-height: 29px; padding: 3px 12px; border: 1px solid #555; border-radius: 0; background: #e9e9e9; color: #111; font: inherit; cursor: pointer; }
+button:hover { background: #d9d9d9; }
+button:focus-visible, input:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid #005fcc; outline-offset: 2px; }
+.message { min-height: 1.3em; margin: 12px 0 0; color: #aa0000; font-weight: bold; }
+.results { min-height: 62px; margin-top: 8px; }
+.results p { margin: 4px 0; }
+.result-heading { margin-top: 10px !important; font-weight: bold; }
+.diagram-section { margin: 24px 0; }
+#triangle { display: block; width: 100%; height: auto; }
+#clear-button { margin-top: 7px; }
+details { margin: 12px 0; border-top: 1px solid #999; padding-top: 9px; }
+summary { width: fit-content; color: #0000bb; cursor: pointer; text-decoration: underline; }
+.details-body { padding: 4px 0 3px; }
+.details-body p { margin: 8px 0; }
+footer { border-top: 1px solid #999; padding: 16px 0 30px; font-size: .9rem; }
+footer p { margin: 6px 0; }
+.periodic-table { display: grid; grid-template-columns: repeat(18, 49px); grid-template-rows: repeat(9, 59px); gap: 1px; width: max-content; margin-top: 10px; background: #999; border: 1px solid #999; }
+.element { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 49px; background: #fff; line-height: 1.2; }
+.element-symbol { font-weight: bold; font-size: 1.05rem; }
+.element-value { margin-top: 3px; }
+.empty { background: #fff; }
+.reference-wrap { overflow-x: auto; }
+.reference-note { font-size: .875rem; }
+@media (max-width: 560px) {
+  main, footer { width: min(100% - 24px, 900px); }
+  h1 { font-size: 1.65rem; }
+  .controls { gap: 10px; }
+  .periodic-table { grid-template-columns: repeat(18, 46px); }
+  .element { min-width: 46px; }
+}

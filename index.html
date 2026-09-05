@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Van Arkel–Ketelaar triangle for IB Chemistry" />
+    <title>Bonding Triangle Visualizer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <p class="back-link"><a href="https://adams-lab.pages.dev/">← Adam's Lab</a></p>
+      <h1>Bonding Triangle Visualizer</h1>
+      <p class="subtitle">Van Arkel–Ketelaar triangle for IB Chemistry</p>
+
+      <section class="calculator" aria-label="Element calculator">
+        <div class="controls">
+          <label>Element A: <input id="element-a" autocomplete="off" spellcheck="false" /></label>
+          <label>Element B: <input id="element-b" autocomplete="off" spellcheck="false" /></label>
+          <button id="plot-button" type="button">Plot</button>
+        </div>
+        <p id="message" class="message" role="alert" aria-live="polite"></p>
+        <div id="results" class="results" aria-live="polite">
+          <p>Enter two element symbols, then select Plot.</p>
+        </div>
+      </section>
+
+      <section class="diagram-section" aria-label="Bonding triangle">
+        <svg id="triangle" viewBox="0 0 900 780" role="img" aria-labelledby="triangle-title triangle-description">
+          <title id="triangle-title">Van Arkel–Ketelaar bonding triangle</title>
+          <desc id="triangle-description">A bonding triangle with metallic, ionic, polar covalent and covalent regions.</desc>
+          <g id="triangle-base"></g>
+          <g id="plot-points" aria-label="Plotted element pairs"></g>
+        </svg>
+        <button id="clear-button" type="button">Clear points</button>
+      </section>
+
+      <details>
+        <summary>How does this work?</summary>
+        <div class="details-body">
+          <p>Δχ = |χ<sub>a</sub> − χ<sub>b</sub>|</p>
+          <p>χ<sub>avg</sub> = (χ<sub>a</sub> + χ<sub>b</sub>) / 2</p>
+          <p>Difference determines the vertical position. Average determines the horizontal position.</p>
+          <p>The triangle represents a continuum of bonding character rather than strict bond-type boundaries.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Electronegativity reference</summary>
+        <div class="details-body reference-wrap">
+          <div id="periodic-table" class="periodic-table" aria-label="IB Chemistry electronegativity reference periodic table"></div>
+          <p class="reference-note">— = no electronegativity value shown in the IB reference.</p>
+        </div>
+      </details>
+    </main>
+
+    <footer>
+      <p>© 2026</p>
+      <p><strong>BONDING TRIANGLE VISUALIZER</strong></p>
+      <p>Made by Adam Sun · <a href="https://adams-lab.pages.dev/">Adam's Lab</a></p>
+      <p>Contact:<br />WeChat: carbon37558<br />Email: <a href="mailto:adam51538@hotmail.com">adam51538@hotmail.com</a></p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
